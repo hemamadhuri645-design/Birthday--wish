@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday 🎉</title>
+
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+<style>
+body{
+    background: linear-gradient(135deg,#ff9a9e,#fad0c4);
+    overflow:hidden;
+}
+
+/* Floating balloons */
+.balloon{
+    position:absolute;
+    font-size:40px;
+    animation:float 8s infinite ease-in-out;
+}
+
+.balloon:nth-child(1){
+    left:10%;
+    animation-delay:0s;
+}
+
+.balloon:nth-child(2){
+    left:80%;
+    animation-delay:2s;
+}
+
+.balloon:nth-child(3){
+    left:50%;
+    animation-delay:4s;
+}
+
+@keyframes float{
+    0%{
+        transform:translateY(100vh);
+        opacity:0;
+    }
+    20%{
+        opacity:1;
+    }
+    100%{
+        transform:translateY(-120vh);
+        opacity:0;
+    }
+}
+</style>
+</head>
+
+<body class="min-h-screen flex items-center justify-center px-4">
+
+<!-- Floating Balloons -->
+<div class="balloon">🎈</div>
+<div class="balloon">🎈</div>
+<div class="balloon">🎈</div>
+
+<!-- Card -->
+<div class="bg-white shadow-2xl rounded-3xl p-8 max-w-md w-full text-center z-10">
+
+    <h1 class="text-4xl font-extrabold text-pink-500 mb-3">
+        🎂 Happy Birthday! 🎂
+    </h1>
+
+    <div class="text-7xl animate-bounce mb-4">
+        🎂
+    </div>
+
+    <p class="text-gray-700 text-lg mb-6">
+        Wishing you a day filled with happiness, laughter,
+        love, and unforgettable memories.
+        May all your dreams come true this year! 💖
+    </p>
+
+    <div class="text-5xl mb-5">
+        🎉 🎁 🎈
+    </div>
+
+    <p class="italic text-gray-600">
+        "Count your life by smiles, not tears.
+        Count your age by friends, not years."
+    </p>
+
+    <button
+        onclick="celebrate()"
+        class="mt-6 px-6 py-3 bg-pink-500 text-white rounded-xl shadow-lg hover:bg-pink-600 transition duration-300">
+        Click for a Surprise 🎊
+    </button>
+
+    <p id="surprise"
+       class="mt-5 text-xl font-bold text-purple-600 min-h-[60px]">
+    </p>
+
+</div>
+
+<script>
+function celebrate() {
+
+    // Main confetti blast
+    confetti({
+        particleCount: 180,
+        spread: 80,
+        origin: { y: 0.6 }
+    });
+
+    // Side blasts
+    setTimeout(() => {
+        confetti({
+            particleCount: 120,
+            angle: 60,
+            spread: 90,
+            origin: { x: 0 }
+        });
+
+        confetti({
+            particleCount: 120,
+            angle: 120,
+            spread: 90,
+            origin: { x: 1 }
+        });
+    }, 300);
+
+    // Typing effect
+    const message =
+        "💖 You are amazing! Have the happiest birthday ever! 🎂✨";
+
+    const surprise = document.getElementById("surprise");
+
+    surprise.innerHTML = "";
+
+    let index = 0;
+
+    const typing = setInterval(() => {
+        surprise.innerHTML += message.charAt(index);
+        index++;
+
+        if(index >= message.length){
+            clearInterval(typing);
+        }
+    }, 50);
+}
+</script>
+
+</body>
+</html>
